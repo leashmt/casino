@@ -1,6 +1,5 @@
 import { FC, useEffect, useState } from "react";
 import { initCards, rankOrder } from "../utils/initCards";
-import { compareHands, drawCard, findTwoPairs, getBestCard, pickNewCard, repeatIn } from "../utils/function";
 import HandPlayer from "./HandPlayer";
 import CardBlockButton from "./buttons/BlockCard";
 import ChangeCardsButton from "./buttons/ChangeCards";
