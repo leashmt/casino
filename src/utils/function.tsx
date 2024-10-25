@@ -15,6 +15,9 @@ interface PairResult {
 }
 
 export const drawCard = (cards: Card[], playerHand: Card[]): { cards: Card[], playerHand: Card[] } => {
+    if (cards.length === 0) {
+        return { cards: [], playerHand: [] };
+    }
     const randomIndex = Math.floor(Math.random() * cards.length);
     const card = cards[randomIndex];
     cards.splice(randomIndex, 1);
