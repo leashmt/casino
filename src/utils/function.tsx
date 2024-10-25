@@ -11,11 +11,12 @@ interface Player {
     hand: Card[];
 }
 
-export const drawCard = (cards: Card[], player: Player): { cards: Card[], player: Player } => {
+export const drawCard = (cards: Card[], playerHand: Card[]): { cards: Card[], playerHand: Card[] } => {
     const randomIndex = Math.floor(Math.random() * cards.length);
     const card = cards[randomIndex];
     cards.splice(randomIndex, 1);
-    player.hand.push(card);
-
-    return { cards, player };
-}
+    playerHand.push(card);
+    return {
+        cards, playerHand
+    };
+};
