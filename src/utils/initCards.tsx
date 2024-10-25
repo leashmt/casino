@@ -23,3 +23,6 @@ const deck: Card[] = [
 export const initCards = (): Card[] => {
     return deck;
 }
+
+
+export const rankOrder: Rank[] = ['7', '8', '9', '10', 'Jack', 'Queen', 'King', 'Ace'];
