@@ -1,7 +1,7 @@
 # Projet de poker simplifié
 
 -   Le jeu de poker a 32 cartes (du 7 à l’As)
--   4 cartes de chaque des 4 types (Hearts, Diamonds, Clubs, Spades)
+-   4 cartes de chaque des 4 types (Coeur, Carreau, Trefle, Pique)
 -   Seules les annonces suivantes sont comptabilisées: Carré / Brelan / Double Paire / Paire. En cas d’annonces similaires, on n’évalue pas les cartes restantes.
 -   Si il n’y a pas d’annonce, la carte forte l’emporte.
 

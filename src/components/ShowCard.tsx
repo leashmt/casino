@@ -4,8 +4,8 @@ import Diamond from "../icon/Diamond";
 import Club from "../icon/Club";
 import Spade from "../icon/Spade";
 
-type Suit = 'Hearts' | 'Diamonds' | 'Clubs' | 'Spades';
-type Rank = '7' | '8' | '9' | '10' | 'Jack' | 'Queen' | 'King' | 'Ace';
+type Suit = 'Coeur' | 'Carreau' | 'Trefle' | 'Pique';
+type Rank = '7' | '8' | '9' | '10' | 'Valet' | 'Dame' | 'Roi' | 'As';
 
 interface Card {
     suit: Suit;
@@ -31,13 +31,13 @@ const ShowCard: FC<CardProps> = ({ card, index }) => {
 
     const getColor = (type: Suit) => {
         switch (type) {
-            case 'Hearts':
+            case 'Coeur':
                 return 'red-600';
-            case 'Diamonds':
+            case 'Carreau':
                 return 'red-600';
-            case 'Clubs':
+            case 'Trefle':
                 return 'black';
-            case 'Spades':
+            case 'Pique':
                 return 'black';
         }
     }
@@ -52,10 +52,10 @@ const ShowCard: FC<CardProps> = ({ card, index }) => {
                 {/* Front of the card */}
                 <div className={"card-front border border-red-600 border-2 rounded-md p-2 flex justify-around items-center " + (card.isBlocked ? "bg-gray-400" : "bg-white")}>
                     <p className={"text-2xl font-bold text-" + getColor(card.suit)}>{card.rank}</p>
-                    {card.suit === 'Hearts' && <Heart />}
-                    {card.suit === 'Diamonds' && <Diamond />}
-                    {card.suit === 'Clubs' && <Club />}
-                    {card.suit === 'Spades' && <Spade />}
+                    {card.suit === 'Coeur' && <Heart />}
+                    {card.suit === 'Carreau' && <Diamond />}
+                    {card.suit === 'Trefle' && <Club />}
+                    {card.suit === 'Pique' && <Spade />}
                 </div>
 
                 {/* Back of the card */}

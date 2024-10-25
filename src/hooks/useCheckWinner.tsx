@@ -1,7 +1,7 @@
 import { compareHands, findTwoPairs, getBestCard, repeatIn } from "../utils/function";
 
-type Suit = 'Hearts' | 'Diamonds' | 'Clubs' | 'Spades';
-type Rank = '7' | '8' | '9' | '10' | 'Jack' | 'Queen' | 'King' | 'Ace';
+type Suit = 'Coeur' | 'Carreau' | 'Trefle' | 'Pique';
+type Rank = '7' | '8' | '9' | '10' | 'Valet' | 'Dame' | 'Roi' | 'As';
 
 interface Card {
     suit: Suit;
@@ -15,7 +15,7 @@ interface UseCheckWinnerProps {
     typeCombinaison: string[];
     rankOrder: Rank[];
     setMessage: (message: string) => void;
-    setStatusGame: (status: 'Init' | 'Playing' | 'Checking' | 'Win' | 'Lose' | 'Equitable') => void;
+    setStatusGame: (status: 'Init' | 'Playing' | 'ChecRoi' | 'Win' | 'Lose' | 'Equitable') => void;
 }
 
 export const useCheckWinner = ({

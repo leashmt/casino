@@ -1,7 +1,7 @@
 import { rankOrder } from "./initCards";
 
-type Suit = 'Hearts' | 'Diamonds' | 'Clubs' | 'Spades';
-type Rank = '7' | '8' | '9' | '10' | 'Jack' | 'Queen' | 'King' | 'Ace';
+type Suit = 'Coeur' | 'Carreau' | 'Trefle' | 'Pique';
+type Rank = '7' | '8' | '9' | '10' | 'Valet' | 'Dame' | 'Roi' | 'As';
 
 interface Card {
     suit: Suit;
@@ -59,7 +59,7 @@ export const getBestCard = (hand: Card[]): Card | null => {
 
 const findPair = (hand: Card[]): PairResult => {
     const rankCount: Record<Rank, number> = {
-        '7': 0, '8': 0, '9': 0, '10': 0, 'Jack': 0, 'Queen': 0, 'King': 0, 'Ace': 0,
+        '7': 0, '8': 0, '9': 0, '10': 0, 'Valet': 0, 'Dame': 0, 'Roi': 0, 'As': 0,
     };
 
     hand.forEach(card => {

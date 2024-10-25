@@ -1,8 +1,8 @@
 import { FC } from "react";
 import ShowCard from "./ShowCard";
 
-type Suit = 'Hearts' | 'Diamonds' | 'Clubs' | 'Spades';
-type Rank = '7' | '8' | '9' | '10' | 'Jack' | 'Queen' | 'King' | 'Ace';
+type Suit = 'Coeur' | 'Carreau' | 'Trefle' | 'Pique';
+type Rank = '7' | '8' | '9' | '10' | 'Valet' | 'Dame' | 'Roi' | 'As';
 
 interface Card {
     suit: Suit;

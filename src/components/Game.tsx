@@ -7,9 +7,9 @@ import { useCheckWinner } from "../hooks/useCheckWinner";
 import { useDistribution } from "../hooks/useDistribution";
 import { useChangeCards } from "../hooks/useChangeCards";
 
-type Suit = 'Hearts' | 'Diamonds' | 'Clubs' | 'Spades';
-type Rank = '7' | '8' | '9' | '10' | 'Jack' | 'Queen' | 'King' | 'Ace';
-type Status = 'Init' | 'Playing' | 'Checking' | 'Win' | 'Lose' | 'Equitable';
+type Suit = 'Coeur' | 'Carreau' | 'Trefle' | 'Pique';
+type Rank = '7' | '8' | '9' | '10' | 'Valet' | 'Dame' | 'Roi' | 'As';
+type Status = 'Init' | 'Playing' | 'ChecRoi' | 'Win' | 'Lose' | 'Equitable';
 interface Card {
     suit: Suit;
     rank: Rank;

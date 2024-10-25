@@ -1,7 +1,7 @@
 import { drawCard, findTwoPairs, repeatIn } from "./function";
 
-type Suit = 'Hearts' | 'Diamonds' | 'Clubs' | 'Spades';
-type Rank = '7' | '8' | '9' | '10' | 'Jack' | 'Queen' | 'King' | 'Ace';
+type Suit = 'Coeur' | 'Carreau' | 'Trefle' | 'Pique';
+type Rank = '7' | '8' | '9' | '10' | 'Valet' | 'Dame' | 'Roi' | 'As';
 
 interface Card {
     suit: Suit;
@@ -12,9 +12,9 @@ interface Card {
 describe('drawCard', () => {
     it('should draw a card from the deck and add it to the player hand', () => {
         const cards: Card[] = [
-            { suit: 'Hearts', rank: '7' },
-            { suit: 'Diamonds', rank: '8' },
-            { suit: 'Clubs', rank: '9' },
+            { suit: 'Coeur', rank: '7' },
+            { suit: 'Carreau', rank: '8' },
+            { suit: 'Trefle', rank: '9' },
         ];
         const playerHand: Card[] = [];
 
@@ -37,9 +37,9 @@ describe('drawCard', () => {
 
     it('should correctly handle multiple draws', () => {
         const cards: Card[] = [
-            { suit: 'Hearts', rank: '7' },
-            { suit: 'Diamonds', rank: '8' },
-            { suit: 'Clubs', rank: '9' },
+            { suit: 'Coeur', rank: '7' },
+            { suit: 'Carreau', rank: '8' },
+            { suit: 'Trefle', rank: '9' },
         ];
         const playerHand: Card[] = [];
 
@@ -55,26 +55,26 @@ describe('drawCard', () => {
 describe('repeatIn', () => {
     it('should return true if nFactor is 1 and there is more than one card', () => {
         const cards: Card[] = [
-            { suit: 'Hearts', rank: '7' },
-            { suit: 'Diamonds', rank: '8' },
+            { suit: 'Coeur', rank: '7' },
+            { suit: 'Carreau', rank: '8' },
         ];
         expect(repeatIn(cards, 1)).toBe(true);
     });
 
     it('should return true if there is a rank with count greater than or equal to nFactor', () => {
         const cards: Card[] = [
-            { suit: 'Hearts', rank: '7' },
-            { suit: 'Diamonds', rank: '7' },
-            { suit: 'Clubs', rank: '8' },
+            { suit: 'Coeur', rank: '7' },
+            { suit: 'Carreau', rank: '7' },
+            { suit: 'Trefle', rank: '8' },
         ];
         expect(repeatIn(cards, 2)).toBe(true);
     });
 
     it('should return false if no rank meets the nFactor', () => {
         const cards: Card[] = [
-            { suit: 'Hearts', rank: '7' },
-            { suit: 'Diamonds', rank: '8' },
-            { suit: 'Clubs', rank: '9' },
+            { suit: 'Coeur', rank: '7' },
+            { suit: 'Carreau', rank: '8' },
+            { suit: 'Trefle', rank: '9' },
         ];
         expect(repeatIn(cards, 2)).toBe(false);
     });
@@ -86,7 +86,7 @@ describe('repeatIn', () => {
 
     it('should return false if nFactor is greater than the number of cards', () => {
         const cards: Card[] = [
-            { suit: 'Hearts', rank: '7' },
+            { suit: 'Coeur', rank: '7' },
         ];
         expect(repeatIn(cards, 2)).toBe(false);
     });
@@ -95,9 +95,9 @@ describe('repeatIn', () => {
 describe('findTwoPairs', () => {
     it('should return false if there are no pairs', () => {
         const hand: Card[] = [
-            { suit: 'Hearts', rank: '7' },
-            { suit: 'Diamonds', rank: '8' },
-            { suit: 'Clubs', rank: '9' },
+            { suit: 'Coeur', rank: '7' },
+            { suit: 'Carreau', rank: '8' },
+            { suit: 'Trefle', rank: '9' },
         ];
         const result = findTwoPairs(hand);
         expect(result).toBe(false);
@@ -105,9 +105,9 @@ describe('findTwoPairs', () => {
 
     it('should return false if there is only one pair', () => {
         const hand: Card[] = [
-            { suit: 'Hearts', rank: '7' },
-            { suit: 'Diamonds', rank: '7' },
-            { suit: 'Clubs', rank: '9' },
+            { suit: 'Coeur', rank: '7' },
+            { suit: 'Carreau', rank: '7' },
+            { suit: 'Trefle', rank: '9' },
         ];
         const result = findTwoPairs(hand);
         expect(result).toBe(false);
@@ -115,10 +115,10 @@ describe('findTwoPairs', () => {
 
     it('should return true if there are exactly two pairs', () => {
         const hand: Card[] = [
-            { suit: 'Hearts', rank: '7' },
-            { suit: 'Diamonds', rank: '7' },
-            { suit: 'Clubs', rank: '8' },
-            { suit: 'Spades', rank: '8' },
+            { suit: 'Coeur', rank: '7' },
+            { suit: 'Carreau', rank: '7' },
+            { suit: 'Trefle', rank: '8' },
+            { suit: 'Pique', rank: '8' },
         ];
         const result = findTwoPairs(hand);
         expect(result).toBe(true);
@@ -126,12 +126,12 @@ describe('findTwoPairs', () => {
 
     it('should return false if there are more than two pairs', () => {
         const hand: Card[] = [
-            { suit: 'Hearts', rank: '7' },
-            { suit: 'Diamonds', rank: '7' },
-            { suit: 'Clubs', rank: '8' },
-            { suit: 'Spades', rank: '8' },
-            { suit: 'Hearts', rank: '9' },
-            { suit: 'Diamonds', rank: '9' },
+            { suit: 'Coeur', rank: '7' },
+            { suit: 'Carreau', rank: '7' },
+            { suit: 'Trefle', rank: '8' },
+            { suit: 'Pique', rank: '8' },
+            { suit: 'Coeur', rank: '9' },
+            { suit: 'Carreau', rank: '9' },
         ];
         const result = findTwoPairs(hand);
         expect(result).toBe(false);
