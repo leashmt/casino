@@ -1,7 +1,9 @@
 import { FC, useEffect, useState } from "react";
 import { initCards, rankOrder } from "../utils/initCards";
-import { compareHands, drawCard, findTwoPairs, getBestCard, repeatIn } from "../utils/function";
+import { compareHands, drawCard, findTwoPairs, getBestCard, pickNewCard, repeatIn } from "../utils/function";
 import HandPlayer from "./HandPlayer";
+import CardBlockButton from "./buttons/BlockCard";
+import ChangeCardsButton from "./buttons/ChangeCards";
 
 type Suit = 'Hearts' | 'Diamonds' | 'Clubs' | 'Spades';
 type Rank = '7' | '8' | '9' | '10' | 'Jack' | 'Queen' | 'King' | 'Ace';
@@ -9,9 +11,11 @@ type Status = 'Init' | 'Playing' | 'Checking' | 'Win' | 'Lose' | 'Equitable';
 interface Card {
     suit: Suit;
     rank: Rank;
+    isBlocked?: boolean;
 }
 
-const nbCardsOnHand = 4;
+const NB_CARDS_ON_HAND = 4;
+const MAX_CPT_CHANGES_CARDS = 3;
 const typeCombinaison = ['Plus haute carte', 'Paire', 'Double Paire', 'Brelan', 'Carré'];
 
 const Game: FC = () => {
@@ -20,6 +24,7 @@ const Game: FC = () => {
     const [computerHand, setComputerHand] = useState<Card[]>([]);
     const [statusGame, setStatusGame] = useState<Status>("Init");
     const [message, setMessage] = useState<string>("");
+    const [cptChangesCards, setCptChangesCards] = useState<number>(0);
 
     useEffect(() => {
         if (statusGame === "Init") {
@@ -32,6 +37,7 @@ const Game: FC = () => {
         setPlayerHand([]);
         setComputerHand([]);
         setMessage("");
+        setCptChangesCards(0);
         setStatusGame("Init");
     }
 
@@ -40,7 +46,7 @@ const Game: FC = () => {
         let playerCards: Card[] = [...playerHand];
         let computerCards: Card[] = [...computerHand];
 
-        for (let i = 0; i < nbCardsOnHand; i++) {
+        for (let i = 0; i < NB_CARDS_ON_HAND; i++) {
             const resultPlayer = drawCard(currentDeck, playerCards);
             currentDeck = resultPlayer.cards;
             playerCards = resultPlayer.playerHand;
@@ -101,8 +107,6 @@ const Game: FC = () => {
                     const playerHasDoublePair = findTwoPairs(playerHand);
                     const computerHasDoublePair = findTwoPairs(computerHand);
                     const isFoundDoublePair = foundWinner(playerHasDoublePair, computerHasDoublePair, type);
-
-                    console.log(isFoundDoublePair)
 
                     if (isFoundDoublePair) {
                         return
@@ -171,6 +175,41 @@ const Game: FC = () => {
         }
     }
 
+    const blockCard = (index: number) => {
+        setPlayerHand(playerHand.map((card, i) => {
+            if (i === index) {
+                const actualState = card.isBlocked;
+                return { ...card, isBlocked: !actualState };
+            }
+            return card;
+        }));
+    }
+
+    const changeCards = () => {
+        if (cptChangesCards >= MAX_CPT_CHANGES_CARDS) {
+            return;
+        }
+
+        setCptChangesCards(prevCount => prevCount + 1);
+
+        let updatedDeck = [...cardsDeck];
+
+        const newHand = playerHand.map((card) => {
+            if (card.isBlocked) {
+                return card;
+            }
+
+            const { newDeck, newCard } = pickNewCard(updatedDeck);
+
+            updatedDeck = newDeck;
+
+            return newCard;
+        });
+
+        setPlayerHand(newHand);
+        setCardsDeck(updatedDeck);
+    };
+
     return (
         <div className="flex flex-col items-center justify-between h-5/6">
             <div>
@@ -194,6 +233,32 @@ const Game: FC = () => {
             <div>
                 <h2 className="text-white text-xl font-semibold text-center">Joueur</h2>
                 <HandPlayer cards={playerHand} />
+                <div>
+                    <CardBlockButton
+                        isBlocked={playerHand && playerHand[0]?.isBlocked}
+                        onClick={() => blockCard(0)}
+                        cardIndex={0}
+                    />
+                    <CardBlockButton
+                        isBlocked={playerHand && playerHand[1]?.isBlocked}
+                        onClick={() => blockCard(1)}
+                        cardIndex={1}
+                    />
+                    <CardBlockButton
+                        isBlocked={playerHand && playerHand[2]?.isBlocked}
+                        onClick={() => blockCard(2)}
+                        cardIndex={2}
+                    />
+                    <CardBlockButton
+                        isBlocked={playerHand && playerHand[3]?.isBlocked}
+                        onClick={() => blockCard(3)}
+                        cardIndex={3}
+                    />
+                </div>
+                <ChangeCardsButton
+                    onClick={changeCards}
+                    remainingChanges={MAX_CPT_CHANGES_CARDS - cptChangesCards}
+                />
             </div>
         </div >
     )

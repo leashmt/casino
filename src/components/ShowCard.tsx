@@ -10,6 +10,7 @@ type Rank = '7' | '8' | '9' | '10' | 'Jack' | 'Queen' | 'King' | 'Ace';
 interface Card {
     suit: Suit;
     rank: Rank;
+    isBlocked?: boolean;
 }
 
 interface CardProps {
@@ -30,8 +31,9 @@ const ShowCard: FC<CardProps> = ({ card, index }) => {
                 return 'black';
         }
     }
+
     return (
-        <div key={index} className="bg-white border border-red-600 border-2 rounded-md p-2 m-2 w-44 flex justify-around items-center">
+        <div key={index} className={"border border-red-600 border-2 rounded-md p-2 m-2 w-44 flex justify-around items-center " + (card.isBlocked ? " bg-gray-400" : "bg-white")}>
             <p className={"text-2xl font-bold text-" + getColor(card.suit)}>{card.rank}</p>
             {card.suit === 'Hearts' && <Heart />}
             {card.suit === 'Diamonds' && <Diamond />}

@@ -4,6 +4,7 @@ type Rank = '7' | '8' | '9' | '10' | 'Jack' | 'Queen' | 'King' | 'Ace';
 interface Card {
     suit: Suit;
     rank: Rank;
+    isBlocked?: boolean;
 }
 
 const deck: Card[] = [

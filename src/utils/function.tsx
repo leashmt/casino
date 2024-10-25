@@ -6,6 +6,7 @@ type Rank = '7' | '8' | '9' | '10' | 'Jack' | 'Queen' | 'King' | 'Ace';
 interface Card {
     suit: Suit;
     rank: Rank;
+    isBlocked?: boolean;
 }
 
 interface PairResult {
@@ -22,6 +23,16 @@ export const drawCard = (cards: Card[], playerHand: Card[]): { cards: Card[], pl
         cards, playerHand
     };
 };
+
+export const pickNewCard = (cards: Card[]): { newDeck: Card[], newCard: Card } => {
+    const randomIndex = Math.floor(Math.random() * cards.length);
+    const newCard = cards[randomIndex];
+    const newDeck = [...cards.slice(0, randomIndex), ...cards.slice(randomIndex + 1)];
+
+    return {
+        newDeck, newCard
+    };
+}
 
 export const repeatIn = (arr: Card[], nFactor: number) => {
     if (nFactor === 1 && arr.length > 1) {
