@@ -1,6 +1,7 @@
 import { FC, useEffect, useState } from "react";
 import { initCards } from "../utils/initCards";
 import { drawCard } from "../utils/function";
+import HandPlayer from "./HandPlayer";
 
 type Suit = 'Hearts' | 'Diamonds' | 'Clubs' | 'Spades';
 type Rank = '7' | '8' | '9' | '10' | 'Jack' | 'Queen' | 'King' | 'Ace';
@@ -42,8 +43,15 @@ const Game: FC = () => {
     }, [statusGame]);
 
     return (
-        <div>
-
+        <div className="flex flex-col items-center justify-between h-96">
+            <div>
+                <h2 className="text-white text-xl font-semibold text-center">Ordinateur</h2>
+                <HandPlayer cards={computerHand} />
+            </div>
+            <div>
+                <h2 className="text-white text-xl font-semibold text-center">Joueur</h2>
+                <HandPlayer cards={playerHand} />
+            </div>
         </div>
     )
 }
