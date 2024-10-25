@@ -15,7 +15,7 @@ interface usedDistributionProps {
     setCardsDeck: (cardsDeck: Card[]) => void;
     setPlayerHand: (playerHand: Card[]) => void;
     setComputerHand: (computerHand: Card[]) => void;
-    setStatusGame: (status: 'Init' | 'Playing' | 'ChecRoi' | 'Win' | 'Lose' | 'Equitable') => void;
+    setStatusGame: (status: 'Init' | 'Playing' | 'Checking' | 'Win' | 'Lose' | 'Equitable') => void;
     NB_CARDS_ON_HAND: number;
 }
 

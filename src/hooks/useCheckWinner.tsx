@@ -15,7 +15,7 @@ interface UseCheckWinnerProps {
     typeCombinaison: string[];
     rankOrder: Rank[];
     setMessage: (message: string) => void;
-    setStatusGame: (status: 'Init' | 'Playing' | 'ChecRoi' | 'Win' | 'Lose' | 'Equitable') => void;
+    setStatusGame: (status: 'Init' | 'Playing' | 'Checking' | 'Win' | 'Lose' | 'Equitable') => void;
 }
 
 export const useCheckWinner = ({

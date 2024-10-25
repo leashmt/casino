@@ -9,7 +9,7 @@ import { useChangeCards } from "../hooks/useChangeCards";
 
 type Suit = 'Coeur' | 'Carreau' | 'Trefle' | 'Pique';
 type Rank = '7' | '8' | '9' | '10' | 'Valet' | 'Dame' | 'Roi' | 'As';
-type Status = 'Init' | 'Playing' | 'ChecRoi' | 'Win' | 'Lose' | 'Equitable';
+type Status = 'Init' | 'Playing' | 'Checking' | 'Win' | 'Lose' | 'Equitable';
 interface Card {
     suit: Suit;
     rank: Rank;
