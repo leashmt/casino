@@ -18,7 +18,7 @@ const HandPlayer: FC<HandPlayerProps> = ({ cards }) => {
     return (
         <div className="flex">
             {cards.map((card, index) => (
-                <ShowCard card={card} index={index} />
+                <ShowCard card={card} index={index} key={index} />
             ))}
         </div>
     )

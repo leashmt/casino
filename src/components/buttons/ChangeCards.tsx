@@ -9,7 +9,7 @@ const ChangeCardsButton: FC<ChangeCardsButtonProps> = ({ onClick, remainingChang
     return (
         <button
             className={
-                ("text-white text-xl font-semibold rounded-md p-2 transition duration-200 ease-in-out shadow-lg m-2 w-full "
+                ("text-white text-xl font-semibold rounded-md p-2 transition duration-200 ease-in-out shadow-lg my-2 w-full"
                     + (remainingChanges > 0 ? " bg-yellow-600 hover:bg-yellow-700" : " bg-gray-400"))
             }
             onClick={onClick}
