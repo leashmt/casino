@@ -1,4 +1,4 @@
-Projet de poker simplifié
+# Projet de poker simplifié
 
 -   Le jeu de poker a 32 cartes (du 7 à l’As)
 -   4 cartes de chaque des 4 types (Hearts, Diamonds, Clubs, Spades)
